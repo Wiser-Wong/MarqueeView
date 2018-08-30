@@ -11,3 +11,15 @@ marqueeView.setMarquee(list, new MarqueeAdapter<String>(this) {
 				return view;
 			}
 		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).start();
+
+
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+	
+	dependencies {
+	        implementation 'com.github.Wiser-Wong:MarqueeView:1.0.0'
+	}
