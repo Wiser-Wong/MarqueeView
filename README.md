@@ -1,8 +1,8 @@
 # MarqueeView
 跑马灯效果
 
-使用方法
-marqueeView.setMarquee(list, new MarqueeAdapter<String>(this) {
+### 使用方法
+    marqueeView.setMarquee(list, new MarqueeAdapter<String>(this) {
 			@Override
 			protected View createItemView(String data) {
 				View view = inflate(R.layout.item);
@@ -13,7 +13,7 @@ marqueeView.setMarquee(list, new MarqueeAdapter<String>(this) {
 		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).start();
 
 
-allprojects {
+    allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
