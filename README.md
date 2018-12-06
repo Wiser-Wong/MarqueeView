@@ -12,7 +12,7 @@
 			}
 		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).start();
 
-
+### 配置
     allprojects {
 		repositories {
 			...
