@@ -10,7 +10,7 @@
 				tvMarquee.setText(data);
 				return view;
 			}
-		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).start();
+		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).setTimeInterval(3000).start();
 
 ### 配置
     allprojects {
@@ -21,5 +21,5 @@
 	}
 	
 	dependencies {
-	        implementation 'com.github.Wiser-Wong:MarqueeView:1.0.0'
+	        implementation 'com.github.Wiser-Wong:MarqueeView:1.1.0'
 	}
