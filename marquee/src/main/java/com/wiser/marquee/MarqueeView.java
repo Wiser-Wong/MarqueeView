@@ -1,9 +1,5 @@
 package com.wiser.marquee;
 
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
-
 import android.content.Context;
 import android.support.annotation.AnimRes;
 import android.support.annotation.Nullable;
@@ -12,16 +8,19 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.widget.ViewFlipper;
 
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  * @author Wiser
- * 
+ *
  *         属性 ViewAnimator_inAnimation ViewAnimator_outAnimation
  *         ViewAnimator_animateFirstView ViewFlipper_flipInterval
  *         ViewFlipper_autoStart MarqueeView_marqueeAnimDuration
  *         <p>
  *         注意： interval 必须大于 animDuration，否则视图将会重叠
  */
-
 public class MarqueeView<E> extends ViewFlipper implements Observer {
 
 	protected MarqueeFactory<E>	factory;
@@ -114,7 +113,7 @@ public class MarqueeView<E> extends ViewFlipper implements Observer {
 
 	/**
 	 * 初始跑马灯
-	 * 
+	 *
 	 * @param list
 	 *            集合
 	 * @param adapter
@@ -129,7 +128,7 @@ public class MarqueeView<E> extends ViewFlipper implements Observer {
 
 	/**
 	 * 启动动画
-	 * 
+	 *
 	 * @param inResId
 	 *            进入动画
 	 * @param outResId
@@ -144,7 +143,7 @@ public class MarqueeView<E> extends ViewFlipper implements Observer {
 
 	/**
 	 * 启动动画
-	 * 
+	 *
 	 * @param inAnimation
 	 *            进入动画
 	 * @param outAnimation
@@ -159,7 +158,7 @@ public class MarqueeView<E> extends ViewFlipper implements Observer {
 
 	/**
 	 * 设置点击事件
-	 * 
+	 *
 	 * @param mOnItemClickListener
 	 * @return
 	 */
@@ -169,18 +168,18 @@ public class MarqueeView<E> extends ViewFlipper implements Observer {
 	}
 
 	/**
-	 * 设置动画时间
-	 * 
-	 * @param animDuration
+	 * 设置切换页面时间间隔
+	 *
+	 * @param duration
+	 * @return
 	 */
-	public MarqueeView<E> setAnimDuration(long animDuration) {
+	public MarqueeView<E> setTimeInterval(int duration) {
+		long animDuration = 0;
 		if (getInAnimation() != null) {
-			getInAnimation().setDuration(animDuration);
+			animDuration = getInAnimation().getDuration();
 		}
-		if (getOutAnimation() != null) {
-			getOutAnimation().setDuration(animDuration);
-		}
-
+		if (duration >= 30) setFlipInterval((int) (duration + animDuration));
+		else setFlipInterval((int) (30 + animDuration));
 		return this;
 	}
 
@@ -188,7 +187,13 @@ public class MarqueeView<E> extends ViewFlipper implements Observer {
 	 * 启动跑马灯必须调用
 	 */
 	public void start() {
-		startFlipping();
+		if (!isAutoStart()) startFlipping();
 	}
 
+	/**
+	 * 暂停跑马灯
+	 */
+	public void stop() {
+		if (isAutoStart()) stopFlipping();
+	}
 }

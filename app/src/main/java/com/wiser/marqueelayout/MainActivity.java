@@ -6,6 +6,7 @@ import java.util.List;
 import com.wiser.marquee.MarqueeAdapter;
 import com.wiser.marquee.MarqueeView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
 
 		initMarquee();
 
+		findViewById(R.id.ll_layout).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(MainActivity.this,SecondActivity.class));
+			}
+		});
+
 	}
 
 	private void initMarquee() {
@@ -37,7 +45,18 @@ public class MainActivity extends AppCompatActivity {
 				tvMarquee.setText(data);
 				return view;
 			}
-		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).start();
+		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).setTimeInterval(3000).start();
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		marqueeView.stop();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		marqueeView.start();
+	}
 }
