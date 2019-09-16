@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 				tvMarquee.setText(data);
 				return view;
 			}
-		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).setTimeInterval(3000).start();
+		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).setTimeInterval(2000).start();
 	}
 
 	@Override
