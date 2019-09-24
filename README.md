@@ -1,5 +1,6 @@
 # MarqueeView
-跑马灯效果
+## 跑马灯效果
+![images](https://github.com/Wiser-Wong/MarqueeView/blob/master/images/marquee.gif)
 
 ### 使用方法
     marqueeView.setMarquee(list, new MarqueeAdapter<String>(this) {
