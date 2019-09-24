@@ -14,7 +14,7 @@ import java.util.Observer;
 
 /**
  * @author Wiser
- *
+ *         <p>
  *         属性 ViewAnimator_inAnimation ViewAnimator_outAnimation
  *         ViewAnimator_animateFirstView ViewFlipper_flipInterval
  *         ViewFlipper_autoStart MarqueeView_marqueeAnimDuration
@@ -24,6 +24,8 @@ import java.util.Observer;
 public class MarqueeView<E> extends ViewFlipper implements Observer {
 
 	protected MarqueeFactory<E>	factory;
+
+	private boolean				isOneItemNoScroll		= true;				// 是否一条数据禁止滚动
 
 	private final int			DEFAULT_ANIM_RES_IN		= R.anim.in_bottom;
 
@@ -184,16 +186,39 @@ public class MarqueeView<E> extends ViewFlipper implements Observer {
 	}
 
 	/**
+	 * 是否一条数据禁止滚动
+	 *
+	 * @param isScroll
+	 * @return
+	 */
+	public MarqueeView<E> isOneItemNoScroll(boolean isScroll) {
+		this.isOneItemNoScroll = isScroll;
+		return this;
+	}
+
+	private boolean isSizeLong() {
+		return factory != null && factory.getData() != null && factory.getData().size() > 1;
+	}
+
+	/**
 	 * 启动跑马灯必须调用
 	 */
 	public void start() {
-		if (!isAutoStart()) startFlipping();
+		if (isSizeLong()) {
+			if (!isAutoStart()) startFlipping();
+		} else {
+			if (!isOneItemNoScroll && !isAutoStart()) startFlipping();
+		}
 	}
 
 	/**
 	 * 暂停跑马灯
 	 */
 	public void stop() {
-		if (isAutoStart()) stopFlipping();
+		if (isSizeLong()) {
+			if (isAutoStart()) stopFlipping();
+		} else {
+			if (!isOneItemNoScroll && !isAutoStart()) stopFlipping();
+		}
 	}
 }

@@ -23,12 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 		initMarquee();
 
-		findViewById(R.id.ll_layout).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				startActivity(new Intent(MainActivity.this,SecondActivity.class));
-			}
-		});
+		findViewById(R.id.ll_layout).setOnClickListener(v -> startActivity(new Intent(MainActivity.this,SecondActivity.class)));
 
 	}
 
@@ -45,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 				tvMarquee.setText(data);
 				return view;
 			}
-		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).setTimeInterval(2000).start();
+		}).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).setTimeInterval(2000).isOneItemNoScroll(true).start();
 	}
 
 	@Override

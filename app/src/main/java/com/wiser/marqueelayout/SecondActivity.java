@@ -1,24 +1,23 @@
 package com.wiser.marqueelayout;
 
-import android.app.Activity;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.wiser.marquee.MarqueeAdapter;
 import com.wiser.marquee.MarqueeView;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 public class SecondActivity extends Activity {
 
     MarqueeView<String> marqueeView;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -43,7 +42,7 @@ public class SecondActivity extends Activity {
                 tvMarquee.setText(data);
                 return view;
             }
-        }).setMarqueeAnim(R.anim.in_bottom,R.anim.out_top).setTimeInterval(3000).start();
+        }).setMarqueeAnim(R.anim.in_bottom, R.anim.out_top).setTimeInterval(3000).start();
     }
 
     @Override
